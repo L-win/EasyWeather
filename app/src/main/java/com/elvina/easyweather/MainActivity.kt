@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         override fun onPreExecute() {
             super.onPreExecute()
             findViewById<ProgressBar>(R.id.Progressbar).visibility = View.VISIBLE
-            findViewById<RelativeLayout>(R.id.MainContainer).visibility = View.VISIBLE
+            findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
         }
     }
 }
