@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         println("CONSOLE: START")
         fetchWeatherTask().execute()
     }
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 println("CONSOLE: " + 2.3)
             }
             catch(e: Exception){
-                println("CONSOLE: "+e.message)
+                println("CONSOLE: " + e.message)
                 response = null
             }
             return response
@@ -53,15 +53,21 @@ class MainActivity : AppCompatActivity() {
             super.onPostExecute(result)
             try{
                 val json = JSONObject(result)
-                val data = json.getJSONObject("location")
-                val name = data.getString("name")
 
-                println("CONSOLE: "+name)
-                println("CONSOLE: END")
+                val location = json.getJSONObject("location").getString("name")
+                val dataCurrent = json.getJSONObject("current")
+                val weatherType = dataCurrent.getJSONObject("condition").getString("text")
+                val weatherTemp = dataCurrent.getString("temp_c")
 
-				findViewById<TextView>(R.id.weather_temperature).text = name
+                findViewById<TextView>(R.id.location).text = location
+				findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °C"
+                findViewById<TextView>(R.id.weather_type).text = weatherType
+
 				findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
 				findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
+
+                println("CONSOLE: " + location)
+                println("CONSOLE: END")
             }
             catch (e: Exception){
 				findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
