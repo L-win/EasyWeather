@@ -19,7 +19,7 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
 
     val LOCATION: String = "Tbilisi"
-    val API: String = ""
+    val API: String = "9824a8fcde3d4e4bb7e71518231105"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,16 +66,19 @@ class MainActivity : AppCompatActivity() {
 
                 val location = json.getJSONObject("location").getString("name")
                 val dataCurrent = json.getJSONObject("current")
+
                 val weatherType = dataCurrent.getJSONObject("condition").getString("text")
                 val weatherTemp = dataCurrent.getInt("temp_c")
-                val updateDateTime = dataCurrent.getString("last_updated")
-                val time = SimpleDateFormat("hh:mm", Locale.ENGLISH)
-                val formattedDateTime = time.format(Date(dataCurrent.getLong("last_updated_epoch")*1000))
+
+                val oldDate = SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dataCurrent.getString("last_updated"))
+                val currentDate = Date()
+                val diff = currentDate.getTime() - oldDate.getTime()
+                val diffM = (diff / 1000) / 60
 
                 findViewById<TextView>(R.id.location).text = location
 				findViewById<TextView>(R.id.weather_temperature).text = weatherTemp.toString() + " °"
                 findViewById<TextView>(R.id.weather_type).text = weatherType
-                findViewById<TextView>(R.id.update_time).text = formattedDateTime
+                findViewById<TextView>(R.id.update_time).text = diffM.toString()+"m ago"
 
 				findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
 				findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
