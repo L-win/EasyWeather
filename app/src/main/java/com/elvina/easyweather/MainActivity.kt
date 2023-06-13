@@ -19,7 +19,7 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
 
     val LOCATION: String = "Tbilisi"
-    val API: String = "9824a8fcde3d4e4bb7e71518231105"
+    val API: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,10 +75,15 @@ class MainActivity : AppCompatActivity() {
                 val diff = currentDate.getTime() - oldDate.getTime()
                 val diffM = (diff / 1000) / 60
 
+                val dataForecast = json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
+                val dayForecast = dataForecast.getJSONObject("day")
+
                 findViewById<TextView>(R.id.location).text = location
 				findViewById<TextView>(R.id.weather_temperature).text = weatherTemp.toString() + " °"
                 findViewById<TextView>(R.id.weather_type).text = weatherType
                 findViewById<TextView>(R.id.update_time).text = diffM.toString()+"m ago"
+                findViewById<TextView>(R.id.weather_temp_min).text = dayForecast.getString("mintemp_c")
+                findViewById<TextView>(R.id.weather_temp_max).text = dayForecast.getString("maxtemp_c")
 
 				findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
 				findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE

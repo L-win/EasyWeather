@@ -34,9 +34,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:alpha=".65"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/baseline_refresh_24"/>
 
                 <TextView
@@ -44,7 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
                     android:text="Updated.."
                     />
             </LinearLayout>
@@ -74,8 +76,32 @@
                 android:layout_height="wrap_content"
                 android:textSize="60sp"
                 android:layout_gravity="center"
-                android:text="0 °C"
+                android:text="0 °"
+                android:textStyle="bold"
                 />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/weather_temp_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="min.."
+                    android:padding="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:text="|"/>
+                <TextView
+                    android:id="@+id/weather_temp_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="max.."
+                    android:padding="10dp"/>
+            </LinearLayout>
 
         </LinearLayout>
 
