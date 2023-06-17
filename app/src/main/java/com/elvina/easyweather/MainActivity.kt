@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {
 				findViewById<TextView>(R.id.weather_temperature).text = weatherTemp.toString() + " °"
                 findViewById<TextView>(R.id.weather_type).text = weatherType
                 findViewById<TextView>(R.id.update_time).text = diffM.toString()+"m ago"
-                findViewById<TextView>(R.id.weather_temp_min).text = dayForecast.getString("mintemp_c")
-                findViewById<TextView>(R.id.weather_temp_max).text = dayForecast.getString("maxtemp_c")
+                findViewById<TextView>(R.id.weather_temp_min).text = "MIN "+dayForecast.getString("mintemp_c")
+                findViewById<TextView>(R.id.weather_temp_max).text = "MAX "+dayForecast.getString("maxtemp_c")
 
 				findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
 				findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
