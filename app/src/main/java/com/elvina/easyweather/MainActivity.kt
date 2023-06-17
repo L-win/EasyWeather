@@ -78,6 +78,9 @@ class MainActivity : AppCompatActivity() {
                 val dataForecast = json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
                 val dayForecast = dataForecast.getJSONObject("day")
 
+                val hourForecast = dataForecast.getJSONArray("hour").getJSONObject(15)
+//                println("CONSOLE: "+hourForecast.getString("temp_c")+" "+hourForecast.getString("time"))
+
                 findViewById<TextView>(R.id.location).text = location
 				findViewById<TextView>(R.id.weather_temperature).text = weatherTemp.toString() + " °"
                 findViewById<TextView>(R.id.weather_type).text = weatherType
