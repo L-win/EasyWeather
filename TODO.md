@@ -1,9 +1,9 @@
 # Easy Weather
 
 ## All
-[ ] Change file structure
-[ ] UI
-[ ] Get user location
-[ ] Get compas
-[ ] Custom icons
-[ ] Pull to refresh
+- [ ] change file structure
+- [ ] ui
+- [ ] get user location
+- [ ] get compas
+- [ ] custom icons
+- [ ] pull to refresh
