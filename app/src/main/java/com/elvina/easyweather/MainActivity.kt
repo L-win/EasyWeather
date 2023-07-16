@@ -14,7 +14,7 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     val LOCATION: String = "Tbilisi"
-    val API: String = "9824a8fcde3d4e4bb7e71518231105"
+    val API: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,39 +53,42 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-
             try {
-                val json = JSONObject(result)
                 val data = ParseJson(JSONObject(result))
-
-                val location = data.locationName()
-                val weatherType = data.currentWeatherType()
-                val weatherTemp = data.currentWeatherTemp()
-                val lastUpdatedTime = data.lastUpdatedTime()
-                val dayForecast = data.forecastToday()
-
-                /* TODO: hourly forecast */
-//                val hourForecast = data.forecastHourly().getJSONObject(15)
-//                println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
-
-                /* TODO: weather icon */
-                findViewById<ImageView>(R.id.weather_icon).background = resources.getDrawable(data.currentWeatherIcon())
-
-                findViewById<TextView>(R.id.location).text = location
-                findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °"
-                findViewById<TextView>(R.id.weather_type).text = weatherType
-                findViewById<TextView>(R.id.update_time).text = lastUpdatedTime + "m ago"
-                findViewById<TextView>(R.id.weather_temp_min).text = "MIN " + dayForecast.getString("mintemp_c")
-                findViewById<TextView>(R.id.weather_temp_max).text = "MAX " + dayForecast.getString("maxtemp_c")
+                setViews(data)
 
                 findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
                 findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
-
             } catch (e: Exception) {
                 findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
                 findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
                 findViewById<TextView>(R.id.error_message).text = e.message
             }
         }
+    }
+
+    fun setViews(data: ParseJson) {
+
+        val location = data.locationName()
+        val weatherType = data.currentWeatherType()
+        val weatherTemp = data.currentWeatherTemp()
+        val lastUpdatedTime = data.lastUpdatedTime()
+        val dayForecast = data.forecastToday()
+
+        /* TODO: hourly forecast */
+
+//        val hourForecast = data.forecastHourly().getJSONObject(15)
+//        println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
+
+        /* TODO: weather icon */
+
+        findViewById<ImageView>(R.id.weather_icon).background = resources.getDrawable(data.currentWeatherIcon())
+
+        findViewById<TextView>(R.id.location).text = location
+        findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °"
+        findViewById<TextView>(R.id.weather_type).text = weatherType
+        findViewById<TextView>(R.id.update_time).text = lastUpdatedTime + "m ago"
+        findViewById<TextView>(R.id.weather_temp_min).text = "MIN " + dayForecast.getString("mintemp_c")
+        findViewById<TextView>(R.id.weather_temp_max).text = "MAX " + dayForecast.getString("maxtemp_c")
     }
 }
