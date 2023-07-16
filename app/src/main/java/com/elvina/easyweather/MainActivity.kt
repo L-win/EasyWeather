@@ -1,7 +1,5 @@
 package com.elvina.easyweather
 
-import android.graphics.Color
-import android.media.Image
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +8,6 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
 import org.json.JSONObject
 import java.net.URL
 
@@ -72,8 +69,9 @@ class MainActivity : AppCompatActivity() {
 //                println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
 
                 /* TODO: weather icon */
-                findViewById<ImageView>(R.id.weather_icon).setImageDrawable(resources.getDrawable(R.drawable.clear))
-//                findViewById<ImageView>(R.id.weather_icon).setIma
+//                findViewById<ImageView>(R.id.weather_icon).setImageDrawable(resources.getDrawable(R.drawable.clear))
+                findViewById<ImageView>(R.id.weather_icon).background =
+                    resources.getDrawable(R.drawable.clear_night_time)
 //                    resources.getDrawable(R.drawable.clear)
 
                 findViewById<TextView>(R.id.location).text = location

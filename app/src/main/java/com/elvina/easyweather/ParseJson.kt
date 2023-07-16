@@ -40,8 +40,10 @@ class ParseJson(val json: JSONObject) {
         return forecast.getJSONArray("hour")
     }
 
-    fun currentWeatherIcon(): String {
-        val code = 1
-        return weatherIcon(code)
+    fun currentWeatherIcon(): Int {
+        val code: Int = 1
+        val dayTime: Boolean = true
+
+        return if (dayTime) weatherIconDay(code) else weatherIconNight(code)
     }
 }
