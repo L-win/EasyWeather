@@ -4,6 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
+import kotlin.reflect.typeOf
 
 class ParseJson(val json: JSONObject) {
 
@@ -41,9 +42,9 @@ class ParseJson(val json: JSONObject) {
     }
 
     fun currentWeatherIcon(): Int {
-        val code: Int = 1
-        val dayTime: Boolean = true
+        val code: Int = json.getJSONObject("current").getJSONObject("condition").getInt("code")
+        val dayTime: Int = json.getJSONObject("current").getInt("is_day")
 
-        return if (dayTime) weatherIconDay(code) else weatherIconNight(code)
+        return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
     }
 }

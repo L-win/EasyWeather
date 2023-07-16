@@ -69,10 +69,7 @@ class MainActivity : AppCompatActivity() {
 //                println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
 
                 /* TODO: weather icon */
-//                findViewById<ImageView>(R.id.weather_icon).setImageDrawable(resources.getDrawable(R.drawable.clear))
-                findViewById<ImageView>(R.id.weather_icon).background =
-                    resources.getDrawable(R.drawable.clear_night_time)
-//                    resources.getDrawable(R.drawable.clear)
+                findViewById<ImageView>(R.id.weather_icon).background = resources.getDrawable(data.currentWeatherIcon())
 
                 findViewById<TextView>(R.id.location).text = location
                 findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °"
