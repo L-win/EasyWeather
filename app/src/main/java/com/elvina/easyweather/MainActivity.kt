@@ -1,19 +1,23 @@
 package com.elvina.easyweather
 
+import android.graphics.Color
+import android.media.Image
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import org.json.JSONObject
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
     val LOCATION: String = "Tbilisi"
-    val API: String = ""
+    val API: String = "9824a8fcde3d4e4bb7e71518231105"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,17 +56,25 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
+
             try {
                 val json = JSONObject(result)
-                val data = ParseJson(json)
+                val data = ParseJson(JSONObject(result))
 
                 val location = data.locationName()
                 val weatherType = data.currentWeatherType()
                 val weatherTemp = data.currentWeatherTemp()
                 val lastUpdatedTime = data.lastUpdatedTime()
                 val dayForecast = data.forecastToday()
+
+                /* TODO: hourly forecast */
 //                val hourForecast = data.forecastHourly().getJSONObject(15)
 //                println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
+
+                /* TODO: weather icon */
+                findViewById<ImageView>(R.id.weather_icon).setImageDrawable(resources.getDrawable(R.drawable.clear))
+//                findViewById<ImageView>(R.id.weather_icon).setIma
+//                    resources.getDrawable(R.drawable.clear)
 
                 findViewById<TextView>(R.id.location).text = location
                 findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °"
@@ -73,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
                 findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
                 findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
+
             } catch (e: Exception) {
                 findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
                 findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE

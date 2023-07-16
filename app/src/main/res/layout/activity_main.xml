@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/myBackground"
     android:orientation="vertical"
     android:padding="25dp"
-    android:background="@color/myBackground"
     tools:context=".MainActivity">
 
     <RelativeLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_container"
         android:visibility="visible">
 
         <!--TOP-->
@@ -20,36 +20,36 @@
             android:id="@+id/location_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
                 android:text="Location.."
-                />
+                android:textSize="24sp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
-                    android:alpha=".65"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/baseline_refresh_24"/>
+                    android:alpha=".65"
+                    android:src="@drawable/baseline_refresh_24" />
 
                 <TextView
                     android:id="@+id/update_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="Updated.."
-                    />
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
@@ -58,51 +58,64 @@
         <!--CENTER-->
         <LinearLayout
             android:id="@+id/weather_container"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/weather_icon"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="45dp"
+                android:minHeight="45dp"
+                android:backgroundTint="@color/white"
+                android:foregroundTint="@color/white"
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/weather_type"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:text="Status.."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_gravity="center"
+                android:text="Status.."
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/weather_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="60sp"
                 android:layout_gravity="center"
                 android:text="0 °"
-                android:textStyle="bold"
-                />
+                android:textSize="60sp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/weather_temp_min"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="min.."
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:text="min.." />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.5"
-                    android:text="|"/>
+                    android:text="|" />
+
                 <TextView
                     android:id="@+id/weather_temp_max"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="max.."
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:text="max.." />
             </LinearLayout>
 
         </LinearLayout>
@@ -111,98 +124,102 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_alignParentBottom="true"
-            >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TIME"/>
+                    android:text="TIME" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TEMP"/>
+                    android:text="TEMP" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TIME"/>
+                    android:text="TIME" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TEMP"/>
+                    android:text="TEMP" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TIME"/>
+                    android:text="TIME" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TEMP"/>
+                    android:text="TEMP" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TIME"/>
+                    android:text="TIME" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TEMP"/>
+                    android:text="TEMP" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TIME"/>
+                    android:text="TIME" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="TEMP"/>
+                    android:text="TEMP" />
             </LinearLayout>
         </LinearLayout>
 
@@ -210,19 +227,17 @@
 
     <ProgressBar
         android:id="@+id/progressbar"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/error_message"
-        android:layout_centerInParent="true"
-        android:text="Error!"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_centerInParent="true"
+        android:text="Error!"
+        android:visibility="gone" />
 
 </RelativeLayout>

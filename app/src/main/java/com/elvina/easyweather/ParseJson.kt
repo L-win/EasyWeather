@@ -39,4 +39,9 @@ class ParseJson(val json: JSONObject) {
             json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
         return forecast.getJSONArray("hour")
     }
+
+    fun currentWeatherIcon(): String {
+        val code = 1
+        return weatherIcon(code)
+    }
 }
