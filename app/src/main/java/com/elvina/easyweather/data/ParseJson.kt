@@ -1,10 +1,9 @@
-package com.elvina.easyweather
+package com.elvina.easyweather.data
 
 import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
-import kotlin.reflect.typeOf
 
 class ParseJson(val json: JSONObject) {
 

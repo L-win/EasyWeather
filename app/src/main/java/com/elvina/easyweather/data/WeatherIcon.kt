@@ -1,4 +1,6 @@
-package com.elvina.easyweather
+package com.elvina.easyweather.data
+
+import com.elvina.easyweather.R
 
 fun weatherIconNight(code: Int): Int {
     return when (code) {

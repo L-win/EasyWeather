@@ -8,13 +8,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.elvina.easyweather.data.ParseJson
 import org.json.JSONObject
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
-    val LOCATION: String = "Tbilisi"
-    val API: String = ""
+    val LOCATION: String = "41.684994, 44.856963"
+    val API: String = "9824a8fcde3d4e4bb7e71518231105"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +24,7 @@ class MainActivity : AppCompatActivity() {
         if (!API.isEmpty()) {
             fetchWeatherTask().execute()
         } else {
-            findViewById<RelativeLayout>(R.id.main_container).visibility = View.GONE
-            findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
-            findViewById<TextView>(R.id.error_message).text = "No API key."
-            println("CONSOLE: NO API KEY")
+            setViewError("No API key.")
         }
 
     }
@@ -34,9 +32,7 @@ class MainActivity : AppCompatActivity() {
     inner class fetchWeatherTask() : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            findViewById<ProgressBar>(R.id.progressbar).visibility = View.VISIBLE
-            findViewById<RelativeLayout>(R.id.main_container).visibility = View.GONE
-            findViewById<TextView>(R.id.error_message).visibility = View.GONE
+            setViewLoading()
         }
 
         override fun doInBackground(vararg params: String?): String? {
@@ -45,7 +41,8 @@ class MainActivity : AppCompatActivity() {
                 response = URL("https://api.weatherapi.com/v1/forecast.json?key=$API&q=$LOCATION")
                     .readText(Charsets.UTF_8)
             } catch (e: Exception) {
-                println("CONSOLE: doInBackground Catch" + e.message)
+                setViewError("Check internet connection.")
+                println("ERROR: ${e.message}")
                 response = null
             }
             return response
@@ -55,40 +52,51 @@ class MainActivity : AppCompatActivity() {
             super.onPostExecute(result)
             try {
                 val data = ParseJson(JSONObject(result))
-                setViews(data)
-
-                findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
-                findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
+                setViewSuccess(data)
             } catch (e: Exception) {
-                findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
-                findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
-                findViewById<TextView>(R.id.error_message).text = e.message
+                setViewError("Something went wrong, check internet connection")
+                println("ERROR: ${e.message}")
             }
         }
     }
 
-    fun setViews(data: ParseJson) {
+    fun setViewSuccess(data: ParseJson) {
 
         val location = data.locationName()
         val weatherType = data.currentWeatherType()
-        val weatherTemp = data.currentWeatherTemp()
-        val lastUpdatedTime = data.lastUpdatedTime()
+        val weatherTemp = data.currentWeatherTemp() + " °"
+        val weatherIcon = resources.getDrawable(data.currentWeatherIcon())
+        val lastUpdatedTime = data.lastUpdatedTime() + "m ago"
         val dayForecast = data.forecastToday()
+        val dayMinTemp = "MIN " + dayForecast.getString("mintemp_c")
+        val dayMaxTemp = "MAX " + dayForecast.getString("maxtemp_c")
 
         /* TODO: hourly forecast */
-
 //        val hourForecast = data.forecastHourly().getJSONObject(15)
 //        println("CONSOLE: " + hourForecast.getString("temp_c") + " " + hourForecast.getString("time"))
 
-        /* TODO: weather icon */
-
-        findViewById<ImageView>(R.id.weather_icon).background = resources.getDrawable(data.currentWeatherIcon())
-
         findViewById<TextView>(R.id.location).text = location
-        findViewById<TextView>(R.id.weather_temperature).text = weatherTemp + " °"
+        findViewById<TextView>(R.id.weather_temperature).text = weatherTemp
         findViewById<TextView>(R.id.weather_type).text = weatherType
-        findViewById<TextView>(R.id.update_time).text = lastUpdatedTime + "m ago"
-        findViewById<TextView>(R.id.weather_temp_min).text = "MIN " + dayForecast.getString("mintemp_c")
-        findViewById<TextView>(R.id.weather_temp_max).text = "MAX " + dayForecast.getString("maxtemp_c")
+        findViewById<ImageView>(R.id.weather_icon).background = weatherIcon
+        findViewById<TextView>(R.id.update_time).text = lastUpdatedTime
+        findViewById<TextView>(R.id.weather_temp_min).text = dayMinTemp
+        findViewById<TextView>(R.id.weather_temp_max).text = dayMaxTemp
+
+        findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
+        findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
+    }
+
+    fun setViewLoading() {
+        findViewById<ProgressBar>(R.id.progressbar).visibility = View.VISIBLE
+        findViewById<RelativeLayout>(R.id.main_container).visibility = View.GONE
+        findViewById<TextView>(R.id.error_message).visibility = View.GONE
+    }
+
+    fun setViewError(message: String?) {
+        findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
+        findViewById<RelativeLayout>(R.id.main_container).visibility = View.GONE
+        findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
+        findViewById<TextView>(R.id.error_message).text = message
     }
 }
