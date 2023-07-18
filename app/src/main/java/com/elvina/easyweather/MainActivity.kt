@@ -10,26 +10,27 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.elvina.easyweather.data.ParseJson
 import org.json.JSONObject
+import java.io.File
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-
-    val LOCATION: String = "41.684994, 44.856963"
-    val API: String = "9824a8fcde3d4e4bb7e71518231105"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (!API.isEmpty()) {
-            fetchWeatherTask().execute()
+        val API_KEY = getString(R.string.api_key)
+        val LOCATION = "41.684994, 44.856963"
+
+        if (!API_KEY.isEmpty()) {
+            fetchWeatherTask(API_KEY, LOCATION).execute()
         } else {
             setViewError("No API key.")
         }
 
     }
 
-    inner class fetchWeatherTask() : AsyncTask<String, Void, String>() {
+    inner class fetchWeatherTask(val apiKey: String, val location: String) : AsyncTask<String, Void, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
             setViewLoading()
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: String?): String? {
             var response: String?
             try {
-                response = URL("https://api.weatherapi.com/v1/forecast.json?key=$API&q=$LOCATION")
+                response = URL("https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$location")
                     .readText(Charsets.UTF_8)
             } catch (e: Exception) {
                 setViewError("Check internet connection.")
