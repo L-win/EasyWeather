@@ -28,20 +28,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        // Read api key from api_key.xml. This file is hidden from public via .gitignore.
         val API_KEY = getString(R.string.api_key)
 
+
+        // Access location provider services for later use.
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+
+        // Accessing GPS module of smartphone, if it is disable weather will not be shown.
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
+
+        // Check all the necessary conditions for requesting weather api.
         if (!gps) {
             setViewError("GPS is disabled.")
         } else if (!API_KEY.isEmpty()) {
+
+            // In first run permission will be requested from user to access location data.
             if (checkLocationPermission()) {
                 fusedLocationClient.lastLocation
                     .addOnSuccessListener { location: Location? ->
-                        // Got last known location. In some rare situations this can be null.
                         val LOCATION = location?.latitude.toString() + "," + location?.longitude.toString()
                         fetchWeatherTask(API_KEY, LOCATION).execute()
                     }
