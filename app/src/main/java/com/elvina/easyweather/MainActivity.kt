@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         // Check all the necessary conditions for requesting weather api.
         if (!gps) {
-            setViewError("GPS is disabled.")
+            setViewError("Enable Location and refresh")
         } else if (!API_KEY.isEmpty()) {
 
             // In first run permission will be requested from user to access location data.
@@ -58,10 +58,10 @@ class MainActivity : AppCompatActivity() {
                         setViewError("Couldn't access location")
                     }
             } else {
-                setViewError("Permission are required.")
+                setViewError("Permission is required")
             }
         } else {
-            setViewError("No API key.")
+            setViewError("No API key")
         }
 
     }
@@ -138,11 +138,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.refresh).visibility = View.VISIBLE
 
         findViewById<Button>(R.id.refresh).setOnClickListener {
-            val mIntent = intent
-            finish()
-            startActivity(mIntent)
+            restartActivity()
         }
-
     }
 
     fun checkLocationPermission(): Boolean {
@@ -160,7 +157,6 @@ class MainActivity : AppCompatActivity() {
                 ),
                 0
             )
-
             false
         } else {
             true
@@ -170,11 +166,12 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == 0 && grantResults.sum() == 0) {
-            val mIntent = intent
-            finish()
-            startActivity(mIntent)
-        }
+        if (requestCode == 0 && grantResults.sum() == 0) restartActivity()
+    }
 
+    fun restartActivity() {
+        val mIntent = intent
+        finish()
+        startActivity(mIntent)
     }
 }
