@@ -1,5 +1,9 @@
 package com.elvina.easyweather
 
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,22 +12,43 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import com.elvina.easyweather.data.ParseJson
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import org.json.JSONObject
 import java.io.File
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val API_KEY = getString(R.string.api_key)
-        val LOCATION = "41.684994, 44.856963"
 
-        if (!API_KEY.isEmpty()) {
-            fetchWeatherTask(API_KEY, LOCATION).execute()
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+
+        if (!gps) {
+            setViewError("GPS is disabled.")
+        } else if (!API_KEY.isEmpty()) {
+            if (checkLocationPermission()) {
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location: Location? ->
+                        // Got last known location. In some rare situations this can be null.
+                        val LOCATION = location?.latitude.toString() + "," + location?.longitude.toString()
+                        fetchWeatherTask(API_KEY, LOCATION).execute()
+                    }
+                    .addOnFailureListener { e ->
+                        setViewError("Couldn't access location")
+                    }
+            }
         } else {
             setViewError("No API key.")
         }
@@ -100,4 +125,26 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
         findViewById<TextView>(R.id.error_message).text = message
     }
+
+    fun checkLocationPermission(): Boolean {
+        return if (ActivityCompat.checkSelfPermission(
+                this, android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this, android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                0
+            )
+            false
+        } else {
+            true
+        }
+    }
+
 }

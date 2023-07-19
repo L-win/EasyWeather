@@ -1,9 +1,10 @@
-# Easy Weather
+## Easy Weather
 
-## All
+### All
+
+- [x] ~custom icons~
+- [x] ~get user location~
 - [ ] change file structure
 - [ ] ui
-- [ ] get user location
 - [ ] get compas
-- [ ] custom icons
 - [ ] pull to refresh
