@@ -241,6 +241,16 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Error!"
-        android:visibility="gone" />
+        android:visibility="visible" />
+    <Button
+        android:id="@+id/refresh"
+        android:text="Refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/error_message"
+        android:layout_marginTop="25dp"
+        android:visibility="gone"
+        />
 
 </RelativeLayout>

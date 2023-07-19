@@ -8,6 +8,7 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
@@ -17,7 +18,6 @@ import com.elvina.easyweather.data.ParseJson
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import org.json.JSONObject
-import java.io.File
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
                     .addOnFailureListener { e ->
                         setViewError("Couldn't access location")
                     }
+            } else {
+                setViewError("Restart app.")
             }
         } else {
             setViewError("No API key.")
@@ -133,6 +135,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<RelativeLayout>(R.id.main_container).visibility = View.GONE
         findViewById<TextView>(R.id.error_message).visibility = View.VISIBLE
         findViewById<TextView>(R.id.error_message).text = message
+        findViewById<Button>(R.id.refresh).visibility = View.VISIBLE
+
+        findViewById<Button>(R.id.refresh).setOnClickListener {
+            val mIntent = intent
+            finish()
+            startActivity(mIntent)
+        }
+
     }
 
     fun checkLocationPermission(): Boolean {
