@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                         setViewError("Couldn't access location")
                     }
             } else {
-                setViewError("Restart app.")
+                setViewError("Permission are required.")
             }
         } else {
             setViewError("No API key.")
@@ -160,10 +160,21 @@ class MainActivity : AppCompatActivity() {
                 ),
                 0
             )
+
             false
         } else {
             true
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 0 && grantResults.sum() == 0) {
+            val mIntent = intent
+            finish()
+            startActivity(mIntent)
+        }
+
+    }
 }
