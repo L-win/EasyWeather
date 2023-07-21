@@ -73,12 +73,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/placeholder_alien"
                 android:backgroundTint="@color/white"
                 android:foregroundTint="@color/white"
                 android:minWidth="60dp"
                 android:minHeight="60dp"
-                app:tint="@color/white"
-                android:background="@drawable/placeholder_alien"/>
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/weather_type"
@@ -93,10 +93,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:text="0 °"
                 android:textSize="60sp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -137,7 +137,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/item_background"
-            android:gravity="bottom"
             android:orientation="horizontal"
             android:padding="15dp">
 
@@ -145,95 +144,117 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="1am" />
+                    android:text="8" />
 
-                <TextView
+                <ImageView
+                    android:id="@+id/hour8_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/placeholder_alien"
+                    android:backgroundTint="@color/white"
+                    android:maxHeight="15dp" />
+
+                <TextView
+                    android:id="@+id/hour8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="22°" />
+                    android:text="0°" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="2am" />
+                    android:text="12" />
 
                 <TextView
+                    android:id="@+id/hour12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="23°" />
+                    android:text="0°" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="3am" />
+                    android:text="16" />
 
                 <TextView
+                    android:id="@+id/hour16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="24°" />
+                    android:text="0°" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="4am" />
+                    android:text="19" />
 
                 <TextView
+                    android:id="@+id/hour19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="25°" />
+                    android:text="0°" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingStart="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="5am" />
+                    android:text="22" />
 
                 <TextView
+                    android:id="@+id/hour22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="26°" />
+                    android:text="0°" />
             </LinearLayout>
         </LinearLayout>
 
