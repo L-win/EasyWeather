@@ -7,5 +7,6 @@
 
     <color name="appBg">#161616</color>
     <color name="itemBackground">#1F1F1F</color>
+    <color name="textSecondary"></color>
 
 </resources>

@@ -7,8 +7,7 @@
     android:background="@color/appBg"
     android:orientation="vertical"
     android:padding="25dp"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <RelativeLayout
         android:id="@+id/main_container"
@@ -21,17 +20,18 @@
             android:id="@+id/location_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/item_background"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@drawable/item_background"
-            android:padding="20dp"
-            >
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:letterSpacing="0.2"
                 android:text="Location.."
+                android:textAllCaps="true"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -53,6 +53,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:text="Updated.."
+                    android:textColor="#828282"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -74,19 +75,10 @@
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
                 android:foregroundTint="@color/white"
-                android:minWidth="45dp"
-                android:minHeight="45dp"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/weather_temperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="0 °"
-                android:textSize="60sp"
-                android:textStyle="bold" />
-
+                android:minWidth="60dp"
+                android:minHeight="60dp"
+                app:tint="@color/white"
+                android:background="@drawable/placeholder_alien"/>
 
             <TextView
                 android:id="@+id/weather_type"
@@ -95,6 +87,17 @@
                 android:layout_gravity="center"
                 android:text="Status.."
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/weather_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0 °"
+                android:textSize="60sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -112,8 +115,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha="0.5"
-                    android:text="|" />
+                    android:alpha="0.6"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="-" />
 
                 <TextView
                     android:id="@+id/weather_temp_max"
@@ -131,9 +136,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            android:gravity="bottom"
             android:background="@drawable/item_background"
+            android:gravity="bottom"
+            android:orientation="horizontal"
             android:padding="15dp">
 
             <LinearLayout
@@ -251,13 +256,12 @@
 
     <Button
         android:id="@+id/refresh"
-        android:text="Restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/error_message"
+        android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
-        android:visibility="gone"
-        />
+        android:text="Restart"
+        android:visibility="gone" />
 
 </RelativeLayout>

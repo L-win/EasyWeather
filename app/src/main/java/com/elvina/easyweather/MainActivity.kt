@@ -105,8 +105,8 @@ class MainActivity : AppCompatActivity() {
         val weatherIcon = resources.getDrawable(data.currentWeatherIcon())
         val lastUpdatedTime = data.lastUpdatedTime() + "m ago"
         val dayForecast = data.forecastToday()
-        val dayMinTemp = "MIN " + dayForecast.getString("mintemp_c")
-        val dayMaxTemp = "MAX " + dayForecast.getString("maxtemp_c")
+        val dayMinTemp = dayForecast.getString("mintemp_c") + " °"
+        val dayMaxTemp = dayForecast.getString("maxtemp_c") + " °"
 
         /* TODO: hourly forecast */
 //        val hourForecast = data.forecastHourly().getJSONObject(15)
