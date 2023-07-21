@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setViewSuccess(data: ParseJson) {
 
+        // General weather data
         val location = data.locationName()
         val weatherType = data.currentWeatherType()
         val weatherTemp = data.currentWeatherTemp() + " °"
@@ -108,13 +109,6 @@ class MainActivity : AppCompatActivity() {
         val dayMinTemp = dayForecast.getString("mintemp_c") + " °"
         val dayMaxTemp = dayForecast.getString("maxtemp_c") + " °"
 
-        // Hourly forecast
-        val hour8 = data.forecastHourly().getJSONObject(8).getInt("temp_c").toString() + "°"
-        val hour12 = data.forecastHourly().getJSONObject(12).getInt("temp_c").toString() + "°"
-        val hour16 = data.forecastHourly().getJSONObject(16).getInt("temp_c").toString() + "°"
-        val hour19 = data.forecastHourly().getJSONObject(19).getInt("temp_c").toString() + "°"
-        val hour22 = data.forecastHourly().getJSONObject(22).getInt("temp_c").toString() + "°"
-
         findViewById<TextView>(R.id.location).text = location
         findViewById<TextView>(R.id.weather_temperature).text = weatherTemp
         findViewById<TextView>(R.id.weather_type).text = weatherType
@@ -123,12 +117,27 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.weather_temp_min).text = dayMinTemp
         findViewById<TextView>(R.id.weather_temp_max).text = dayMaxTemp
 
+
+        // Hourly forecast
+        val hour8 = data.forecastHourly(8) + "°"
+        val hour12 = data.forecastHourly(12) + "°"
+        val hour16 = data.forecastHourly(16) + "°"
+        val hour19 = data.forecastHourly(19) + "°"
+        val hour22 = data.forecastHourly(22) + "°"
+
         findViewById<TextView>(R.id.hour8).text = hour8
         findViewById<TextView>(R.id.hour12).text = hour12
         findViewById<TextView>(R.id.hour16).text = hour16
         findViewById<TextView>(R.id.hour19).text = hour19
         findViewById<TextView>(R.id.hour22).text = hour22
 
+        findViewById<ImageView>(R.id.hour8_image).background = resources.getDrawable(data.hourlyWeatherIcon(8))
+        findViewById<ImageView>(R.id.hour12_image).background = resources.getDrawable(data.hourlyWeatherIcon(12))
+        findViewById<ImageView>(R.id.hour16_image).background = resources.getDrawable(data.hourlyWeatherIcon(16))
+        findViewById<ImageView>(R.id.hour19_image).background = resources.getDrawable(data.hourlyWeatherIcon(19))
+        findViewById<ImageView>(R.id.hour22_image).background = resources.getDrawable(data.hourlyWeatherIcon(22))
+
+        // Conditional UI elements
         findViewById<ProgressBar>(R.id.progressbar).visibility = View.GONE
         findViewById<RelativeLayout>(R.id.main_container).visibility = View.VISIBLE
     }

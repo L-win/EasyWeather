@@ -34,15 +34,25 @@ class ParseJson(val json: JSONObject) {
         return forecast.getJSONObject("day")
     }
 
-    fun forecastHourly(): JSONArray {
+    fun forecastHourly(hour: Int): String {
         val forecast =
             json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
-        return forecast.getJSONArray("hour")
+
+        return forecast.getJSONArray("hour").getJSONObject(hour).getInt("temp_c").toString()
     }
 
     fun currentWeatherIcon(): Int {
         val code: Int = json.getJSONObject("current").getJSONObject("condition").getInt("code")
         val dayTime: Int = json.getJSONObject("current").getInt("is_day")
+
+        return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
+    }
+
+    fun hourlyWeatherIcon(hour: Int): Int {
+        val dayTime: Int = json.getJSONObject("current").getInt("is_day")
+        val forecast =
+            json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
+        val code = forecast.getJSONArray("hour").getJSONObject(hour).getJSONObject("condition").getInt("code")
 
         return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
     }

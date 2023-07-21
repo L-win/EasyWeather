@@ -151,7 +151,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="8" />
+                    android:text="8"
+                    android:alpha="0.6"/>
 
                 <ImageView
                     android:id="@+id/hour8_image"
@@ -181,7 +182,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="12" />
+                    android:text="12"
+                    android:alpha="0.6"/>
+
+                <ImageView
+                    android:id="@+id/hour12_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/placeholder_alien"
+                    android:backgroundTint="@color/white"
+                    android:maxHeight="15dp" />
 
                 <TextView
                     android:id="@+id/hour12"
@@ -203,7 +213,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="16" />
+                    android:text="16"
+                    android:alpha="0.6"/>
+
+                <ImageView
+                    android:id="@+id/hour16_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/placeholder_alien"
+                    android:backgroundTint="@color/white"
+                    android:maxHeight="15dp" />
 
                 <TextView
                     android:id="@+id/hour16"
@@ -224,7 +243,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="19" />
+                    android:text="19"
+                    android:alpha="0.6"/>
+
+                <ImageView
+                    android:id="@+id/hour19_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/placeholder_alien"
+                    android:backgroundTint="@color/white"
+                    android:maxHeight="15dp" />
 
                 <TextView
                     android:id="@+id/hour19"
@@ -246,7 +274,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="5dp"
-                    android:text="22" />
+                    android:text="22"
+                    android:alpha="0.6"/>
+
+                <ImageView
+                    android:id="@+id/hour22_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/placeholder_alien"
+                    android:backgroundTint="@color/white"
+                    android:maxHeight="15dp" />
 
                 <TextView
                     android:id="@+id/hour22"
