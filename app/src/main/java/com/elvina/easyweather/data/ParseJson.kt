@@ -54,6 +54,7 @@ class ParseJson(val json: JSONObject) {
             json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
         val code = forecast.getJSONArray("hour").getJSONObject(hour).getJSONObject("condition").getInt("code")
 
-        return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
+//        return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
+        return if(hour > 16) weatherIconNight(code) else weatherIconDay(code)
     }
 }

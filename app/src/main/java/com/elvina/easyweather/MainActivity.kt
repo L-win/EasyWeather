@@ -78,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                 response = URL("https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$location")
                     .readText(Charsets.UTF_8)
             } catch (e: Exception) {
-                setViewError("Check internet connection.")
                 println("ERROR: ${e.message}")
                 response = null
             }
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 val data = ParseJson(JSONObject(result))
                 setViewSuccess(data)
             } catch (e: Exception) {
-                setViewError("Something went wrong, check internet connection")
+                setViewError("Check internet connection")
                 println("ERROR: ${e.message}")
             }
         }
