@@ -2,5 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="myBackground">#202442</color>
+    <color name="pink">#FEFF44E9</color>
+    <color name="green">#1ED926</color>
+
+    <color name="appBg">#161616</color>
+    <color name="itemBackground">#1F1F1F</color>
+
 </resources>
