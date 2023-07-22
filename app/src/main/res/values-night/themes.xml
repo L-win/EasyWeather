@@ -4,6 +4,10 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/appBg</item>
         <item name="android:textColor">#FFF</item>
+        <item name="android:navigationBarColor">@color/appBg</item>
+    </style>
 
+    <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_background</item>
     </style>
 </resources>

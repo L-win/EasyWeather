@@ -32,7 +32,8 @@
                 android:letterSpacing="0.2"
                 android:text="Location.."
                 android:textAllCaps="true"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -150,9 +151,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:alpha="0.6"
                     android:padding="5dp"
-                    android:text="8"
-                    android:alpha="0.6"/>
+                    android:text="8" />
 
                 <ImageView
                     android:id="@+id/hour8_image"
@@ -181,9 +182,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:alpha="0.6"
                     android:padding="5dp"
-                    android:text="12"
-                    android:alpha="0.6"/>
+                    android:text="12" />
 
                 <ImageView
                     android:id="@+id/hour12_image"
@@ -212,9 +213,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:alpha="0.6"
                     android:padding="5dp"
-                    android:text="16"
-                    android:alpha="0.6"/>
+                    android:text="16" />
 
                 <ImageView
                     android:id="@+id/hour16_image"
@@ -242,9 +243,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:alpha="0.6"
                     android:padding="5dp"
-                    android:text="19"
-                    android:alpha="0.6"/>
+                    android:text="19" />
 
                 <ImageView
                     android:id="@+id/hour19_image"
@@ -273,9 +274,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:alpha="0.6"
                     android:padding="5dp"
-                    android:text="22"
-                    android:alpha="0.6"/>
+                    android:text="22" />
 
                 <ImageView
                     android:id="@+id/hour22_image"
@@ -310,16 +311,19 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Error!"
+        android:textSize="18sp"
         android:visibility="visible" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/refresh"
+        style="@style/MyButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/error_message"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
         android:text="Restart"
+        android:textColor="@color/white"
         android:visibility="gone" />
 
 </RelativeLayout>
