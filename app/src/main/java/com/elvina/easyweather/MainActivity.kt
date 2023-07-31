@@ -22,8 +22,6 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // Access location provider services for later use.
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        var fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
 
         // Accessing GPS module of smartphone, if it is disable weather will not be shown.
