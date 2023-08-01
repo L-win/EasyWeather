@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
         val dayForecast = data.forecastToday()
         val dayMinTemp = dayForecast.getString("mintemp_c") + " °"
         val dayMaxTemp = dayForecast.getString("maxtemp_c") + " °"
+        val windSpeed = data.currentWindSpeed().toString() + " km/h"
 
         findViewById<TextView>(R.id.location).text = location
         findViewById<TextView>(R.id.weather_temperature).text = weatherTemp
@@ -113,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.update_time).text = lastUpdatedTime
         findViewById<TextView>(R.id.weather_temp_min).text = dayMinTemp
         findViewById<TextView>(R.id.weather_temp_max).text = dayMaxTemp
+        findViewById<TextView>(R.id.wind_speed).text = windSpeed
 
 
         // Hourly forecast

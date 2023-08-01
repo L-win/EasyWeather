@@ -13,7 +13,6 @@ class ParseJson(val json: JSONObject) {
 
     fun currentWeatherType(): String {
         return json.getJSONObject("current").getJSONObject("condition").getString("text")
-//        val weatherType = dataCurrent.getJSONObject("condition").getString("text")
     }
 
     fun currentWeatherTemp(): String {
@@ -37,14 +36,12 @@ class ParseJson(val json: JSONObject) {
     fun forecastHourly(hour: Int): String {
         val forecast =
             json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
-
         return forecast.getJSONArray("hour").getJSONObject(hour).getInt("temp_c").toString()
     }
 
     fun currentWeatherIcon(): Int {
         val code: Int = json.getJSONObject("current").getJSONObject("condition").getInt("code")
         val dayTime: Int = json.getJSONObject("current").getInt("is_day")
-
         return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
     }
 
@@ -53,8 +50,10 @@ class ParseJson(val json: JSONObject) {
         val forecast =
             json.getJSONObject("forecast").getJSONArray("forecastday").getJSONObject(0)
         val code = forecast.getJSONArray("hour").getJSONObject(hour).getJSONObject("condition").getInt("code")
+        return if (hour > 16) weatherIconNight(code) else weatherIconDay(code)
+    }
 
-//        return if (dayTime == 1) weatherIconDay(code) else weatherIconNight(code)
-        return if(hour > 16) weatherIconNight(code) else weatherIconDay(code)
+    fun currentWindSpeed(): Int {
+        return json.getJSONObject("current").getInt("wind_kph")
     }
 }
