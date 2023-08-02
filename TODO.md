@@ -8,9 +8,8 @@
 - [ ] change architecture
 - [ ] get compas
 - [ ] pull to refresh
-- [ ] ui: show wind speed
-- [ ] ui: show wind direction
-- [ ] ui: status text should be centered
+- [x] ~ui: show wind speed~
+- [x] ~ui: status text should be centered~
 - [ ] ui: make items bigger
 - [ ] ui: display date and time
 
