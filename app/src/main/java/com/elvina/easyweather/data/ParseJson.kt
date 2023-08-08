@@ -7,8 +7,12 @@ import java.util.Date
 
 class ParseJson(val json: JSONObject) {
 
-    fun locationName(): String {
+    fun locationCity(): String {
         return json.getJSONObject("location").getString("name")
+    }
+
+    fun locationCountry():String{
+        return json.getJSONObject("location").getString("country")
     }
 
     fun currentWeatherType(): String {

@@ -97,7 +97,8 @@ class MainActivity : AppCompatActivity() {
     fun setViewSuccess(data: ParseJson) {
 
         // General weather data
-        val location = data.locationName()
+        val locationCity = data.locationCity()
+        val locationCountry = data.locationCountry()
         val weatherType = data.currentWeatherType()
         val weatherTemp = data.currentWeatherTemp() + " °"
         val weatherIcon = resources.getDrawable(data.currentWeatherIcon())
@@ -107,11 +108,12 @@ class MainActivity : AppCompatActivity() {
         val dayMaxTemp = dayForecast.getString("maxtemp_c") + " °"
         val windSpeed = data.currentWindSpeed().toString() + " km/h"
 
-        findViewById<TextView>(R.id.location).text = location
+        findViewById<TextView>(R.id.location_city).text = locationCity
+        findViewById<TextView>(R.id.location_country).text = locationCountry
         findViewById<TextView>(R.id.weather_temperature).text = weatherTemp
         findViewById<TextView>(R.id.weather_type).text = weatherType
         findViewById<ImageView>(R.id.weather_icon).background = weatherIcon
-        findViewById<TextView>(R.id.update_time).text = lastUpdatedTime
+
         findViewById<TextView>(R.id.weather_temp_min).text = dayMinTemp
         findViewById<TextView>(R.id.weather_temp_max).text = dayMaxTemp
         findViewById<TextView>(R.id.wind_speed).text = windSpeed
